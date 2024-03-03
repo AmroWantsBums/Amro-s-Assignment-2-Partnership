@@ -28,6 +28,11 @@ public class VoteController : MonoBehaviour
             VotePnl.SetActive(true);
             TurnTxt.text = $"Player 1, Hide the screen then press ready to make your vote";
         }
+        if (VoteTime && !PlayerOneTurn && VotePnl.active == false)
+        {
+            VotePnl.SetActive(true);
+            TurnTxt.text = $"Player 2, Hide the screen then press ready to make your vote";
+        }
     }
 
     public void ReadyClick()

@@ -44,10 +44,24 @@ public class MapPoints : MonoBehaviour
             if (voteController.PlayerOneTurn == true)
             {
                 voteController.PlayerOneVote = gameObject;
+                voteController.PlayerOneTurn = false;  
             }
             else
             {
                 voteController.PlayerTwoVote = gameObject;
+                voteController.VoteTime = false;
+                if (voteController.PlayerTwoVote == voteController.PlayerOneVote)
+                {
+                    if (!Moving)
+                    {
+                        Moving = true;
+                    }
+                }
+                else
+                {
+                    Destroy(voteController.PlayerTwoVote);
+                    Destroy(voteController.PlayerOneVote);
+                }
             }
             /*if (!Moving)
             {
