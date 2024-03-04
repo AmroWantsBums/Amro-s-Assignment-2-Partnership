@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 489362678}
   - component: {fileID: 489362682}
   - component: {fileID: 489362683}
+  - component: {fileID: 489362684}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -557,6 +558,8 @@ MonoBehaviour:
   TimeTxt: {fileID: 797185264}
   Timer: 0
   Interval: 0
+  voteController: {fileID: 489362683}
+  HeadingTxt: {fileID: 0}
 --- !u!114 &489362683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +579,24 @@ MonoBehaviour:
   PlayerTwoVote: {fileID: 0}
   PlayerOneTurn: 0
   VoteTime: 0
-  PlayerTwoPlayed: 0
+  PlayerTwoTurn: 0
+  PanelShowed: 0
+--- !u!114 &489362684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489362677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d052df2c4df058a4480bc65129956c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapPointsScript: {fileID: 0}
+  Parent: {fileID: 1654139454}
+  Locations: []
+  StartPos: {fileID: 1409563650}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

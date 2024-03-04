@@ -89,6 +89,7 @@ public class MapPoints : MonoBehaviour
                             Destroy(voteController.PlayerTwoVote);
                             Destroy(voteController.PlayerOneVote);
                         }
+                        
                     }
                     else
                     {

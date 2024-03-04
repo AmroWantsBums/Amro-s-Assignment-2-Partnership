@@ -8,6 +8,8 @@ public class DiscussionTimer : MonoBehaviour
     public TextMeshProUGUI TimeTxt;
     public int Timer;
     public float Interval;
+    public VoteController voteController;
+    public TextMeshProUGUI HeadingTxt;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +19,19 @@ public class DiscussionTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Interval < 1)
+        if (!voteController.VoteTime)
         {
-            Interval = Interval + Time.deltaTime;
-        }
-        else
-        {
-            Interval = 0;
-            Timer--;
-            TimeTxt.text = $"Decide on your next destination. You have {Timer} seconds left";
+            if (Interval < 1)
+            {
+                Interval = Interval + Time.deltaTime;
+            }
+            else
+            {
+                Interval = 0;
+                Timer--;
+                TimeTxt.text = $"Decide on your next destination. You have {Timer} seconds left";
+            }
+
         }
     }
 }

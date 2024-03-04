@@ -12,7 +12,8 @@ public class VoteController : MonoBehaviour
     public GameObject PlayerTwoVote;
     public bool PlayerOneTurn;
     public bool VoteTime = false;
-    public bool PlayerTwoPlayed = false;
+    public bool PlayerTwoTurn = false;
+    public bool PanelShowed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,17 +23,18 @@ public class VoteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (discussionTimer.Timer == 0 && !PlayerOneTurn)
+        if (discussionTimer.Timer == 0 && !PlayerOneTurn && !PlayerTwoTurn)
         {
             VoteTime = true;
             PlayerOneTurn = true;
             VotePnl.SetActive(true);
+            PlayerTwoTurn = true;
             TurnTxt.text = $"Player 1, Hide the screen then press ready to make your vote";
         }
-        if (VoteTime && !PlayerOneTurn && !PlayerTwoPlayed)
+        if (VoteTime && !PlayerOneTurn && PlayerTwoTurn && !PanelShowed)
         {
             VotePnl.SetActive(true);
-            PlayerTwoPlayed = true;
+            PanelShowed = true;
             TurnTxt.text = $"Player 2, Hide the screen then press ready to make your vote";
         }
     }
