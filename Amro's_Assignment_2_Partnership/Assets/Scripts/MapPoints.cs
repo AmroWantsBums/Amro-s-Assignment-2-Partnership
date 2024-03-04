@@ -11,12 +11,16 @@ public class MapPoints : MonoBehaviour
     public bool On = false;
     public bool Moving = false;
     public VoteController voteController;
+    public GameObject[] PossibleMoves;
+    public GameObject CurrentLocation;
+    public MapPoints mapPointsScript;
     // Start is called before the first frame update
     void Start()
     {
         voteController = GameObject.Find("Canvas").GetComponent<VoteController>();
         Location = gameObject;
         Contraband = GameObject.Find("Contraband");
+        CurrentLocation = GameObject.Find("StartPos");
     }
 
     // Update is called once per frame
@@ -41,33 +45,57 @@ public class MapPoints : MonoBehaviour
     {
         if (voteController.VoteTime)
         {
+            
             if (voteController.PlayerOneTurn == true)
             {
-                voteController.PlayerOneVote = gameObject;
-                voteController.PlayerOneTurn = false;  
+                mapPointsScript = CurrentLocation.GetComponent<MapPoints>();
+                GameObject[] PossibleLocations = mapPointsScript.PossibleMoves;
+                foreach (GameObject f in PossibleLocations)
+                {
+                    if (gameObject == f)
+                    {
+                        Debug.Log("Possible Move");
+                        voteController.PlayerOneVote = gameObject;
+                        voteController.PlayerOneTurn = false;
+                    }
+                    else
+                    {
+                        Debug.Log("Impossible Move");
+                    }
+                }
             }
             else
             {
-                voteController.PlayerTwoVote = gameObject;
-                voteController.VoteTime = false;
-                if (voteController.PlayerTwoVote == voteController.PlayerOneVote)
+                mapPointsScript = CurrentLocation.GetComponent<MapPoints>();
+                GameObject[] PossibleLocations = mapPointsScript.PossibleMoves;
+                foreach (GameObject f in PossibleLocations)
                 {
-                    if (!Moving)
+                    if (gameObject == f)
                     {
-                        Moving = true;
-                    }
-                }
-                else
-                {
-                    Destroy(voteController.PlayerTwoVote);
-                    Destroy(voteController.PlayerOneVote);
-                }
-            }
-            /*if (!Moving)
-            {
+                        Debug.Log("Possible Move");
+                        voteController.PlayerTwoVote = gameObject;
+                        voteController.VoteTime = false;
 
-                Moving = true;
-            } */
+                        if (voteController.PlayerTwoVote == voteController.PlayerOneVote)
+                        {
+                            if (!Moving)
+                            {
+                                Moving = true;
+                                CurrentLocation = voteController.PlayerOneVote;
+                            }
+                        }
+                        else
+                        {
+                            Destroy(voteController.PlayerTwoVote);
+                            Destroy(voteController.PlayerOneVote);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Impossible Move");
+                    }
+                }                
+            }
         }
     }
 }
