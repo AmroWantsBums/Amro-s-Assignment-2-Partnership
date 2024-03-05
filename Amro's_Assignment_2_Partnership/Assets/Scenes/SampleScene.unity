@@ -595,7 +595,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapPointsScript: {fileID: 0}
   Parent: {fileID: 1654139454}
-  Locations: []
+  Locations:
+  - {fileID: 428459521}
+  - {fileID: 1048052763}
+  - {fileID: 1359238742}
+  - {fileID: 1300684171}
+  - {fileID: 1724392390}
+  - {fileID: 483290038}
+  - {fileID: 1421415665}
+  - {fileID: 1193119491}
+  - {fileID: 1279711054}
   StartPos: {fileID: 1409563650}
 --- !u!1 &519420028
 GameObject:

@@ -8,6 +8,7 @@ public class LastLocationChecker : MonoBehaviour
     public GameObject Parent;
     public GameObject[] Locations;
     public GameObject StartPos;
+    public List<GameObject> Locations = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +17,18 @@ public class LastLocationChecker : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         mapPointsScript = StartPos.GetComponent<MapPoints>();
         GameObject[] PossibleLocations = mapPointsScript.PossibleMoves;
-        Debug.Log(PossibleLocations.Length);
-        for (int i = 0; i < PossibleLocations.Length; i++)
+
+        // Check if there's only one remaining option
+        if (PossibleLocations.Length == 1)
         {
-            //Debug.Log($"{NoOfItems} available options");
-            mapPointsScript.Location = PossibleLocations[i]; 
-            foreach (GameObject f in Locations)
+            GameObject lastLocation = PossibleLocations[0];
+            foreach (GameObject obj in Locations)
             {
-                var MapScript = f.GetComponent<MapPoints>();
-                MapScript.CurrentLocation = PossibleLocations[i];
+                var MapScript = obj.GetComponent<MapPoints>();
+                MapScript.CurrentLocation = lastLocation;
             }
         }
     }
